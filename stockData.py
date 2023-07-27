@@ -1,6 +1,9 @@
 import pandas as pd
 import yfinance as yf
 
+#15 min limit: 60d
+#60min limit: 730d
+
 def get_data(ticker_: str, timeFrame: str, period: str):
     ticker_.upper()
     timeFrame.lower()

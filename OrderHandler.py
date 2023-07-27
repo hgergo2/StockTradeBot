@@ -6,14 +6,14 @@ import statisticsInfo
 
 class OrderHandler:
 
-    def __init__(self, full_data, symbol: str):
+    def __init__(self, full_data, symbol: str, timeframe=''):
         self.symbol = symbol
         self.full_data = full_data
         self.position = None
         self.wins = 0
         self.losses = 0
         self.all_trades = []
-        self.ch = chartHandler.ChartHandlerBacktest(self.full_data, symbol)
+        self.ch = chartHandler.ChartHandlerBacktest(self.full_data, symbol, timeframe=timeframe)
 
     def open_position(self, is_long: bool, candle, target_price=0, stop_loss=0, info=True):
         if self.position is None:
