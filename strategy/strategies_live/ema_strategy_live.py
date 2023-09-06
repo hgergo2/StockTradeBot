@@ -79,7 +79,7 @@ class strategy:
             self.data30m['ema200'] = ta.ema(self.data30m['Close'], length=200)
             self.data60m['ema200'] = ta.ema(self.data60m['Close'], length=200)
         except:
-            pass
+            return
         try:
             if self.chart is not None:
                 self.chart.update_chart(self.data15m)
@@ -87,7 +87,7 @@ class strategy:
                 self.chart.add_moving_line(self.data15m['top'], color='orange', width=1, name='top')
                 self.chart.add_moving_line(self.data15m['bottom'], color='orange', width=1, name='bottom')
         except:
-            pass
+            return
         #print(f'Data update time: {time.time() - start}')
 
     def run_strategy(self, data, data_30m, data_60m):

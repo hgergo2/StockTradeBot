@@ -4,13 +4,14 @@ import mongo
 
 
 class OrderHandlerLive:
-    def __init__(self, symbol: str, timeframe: str, data, strategy_name: str):
+    def __init__(self, symbol: str, timeframe: str, data, strategy_name: str, create_chart_subplot=False, chart_subplot_title=''):
         self.symbol = symbol
         self.position = None
         self.timeframe = timeframe
         self.data = data
         self.strategy_name = strategy_name
-        self.chart = LiveChartHandler.LiveChart(symbol=symbol, timeframe=timeframe, data=self.data)
+        self.chart = LiveChartHandler.LiveChart(symbol=symbol, timeframe=timeframe, data=self.data,
+                                                create_subplot=create_chart_subplot, subplot_title=chart_subplot_title)
         print(self.symbol)
         latest_position = mongo.get_latest_position_by_strategy(self.symbol, self.strategy_name)
         if latest_position is not None and latest_position['is_active']:
@@ -32,10 +33,9 @@ class OrderHandlerLive:
 
     def open_position(self, order_type: str, buy_candle, target_price=None, stop_loss=None, info=False):
         if self.position is not None: return
+        if buy_candle['Close'] is None: return
+
         mong_id = mongo.get_latest_position_by_id()['_id']+1
-        #if self.symbol in mongo.positions_db.list_collection_names():
-        #    r = mongo.get_latest_position_by_id()
-        #    if r is not None: mong_id = r['_id']+1
 
         pos = Position_live.LivePosition(symbol=self.symbol,
                                          order_type=order_type,
