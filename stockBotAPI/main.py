@@ -28,12 +28,14 @@ def get_position():
 @app.route('/statistics/')
 @cross_origin()
 def get_statistics():
-
-    return mongo_handler.get_statistics()
+    date_start = request.args.get('start')
+    date_end = request.args.get('end')
+    strategies = request.args.get('strategies')
+    return mongo_handler.get_statistics(start=date_start, end=date_end, strategies=strategies)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 
