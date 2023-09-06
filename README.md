@@ -14,6 +14,7 @@ Az api-ban kell hozzá:
 - pymongo
 - pandas
 
+# React
 A react dologba meg fogalmam sincs mert ott sok minden volt
 - npm install @mui/material @emotion/react @emotion/styled
 - npm install --save dayjs react-dayjs
