@@ -10,6 +10,9 @@ A Stock tradebot-ban kell hozzá:
 A Stock Price Collector-ban kell hozzá:
 - pip install yfinance --user
 
+A stock price Collectornak biztosan futnia kell ahhoz hogy a stratégiák menjenek
+mert ez gyűjti ki nekik az adatokat
+
 Az api-ban kell hozzá:
 - pip install flask --user
 - pip install flask-cors --user
