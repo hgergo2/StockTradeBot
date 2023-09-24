@@ -2,17 +2,17 @@
 
 
 A Stock tradebot-ban kell hozzá:
-- pymongo
-- pandas
-- pandas-ta
-- yfinance
-- plotly
+- pip install pymongo --user
+- pip install pandas --user
+- pip install pandas-ta --user
+- pip install yfinance --user
+- pip install plotly --user
 
 Az api-ban kell hozzá:
-- flask
-- flask-cors
-- pymongo
-- pandas
+- pip install flask --user
+- pip install flask-cors --user
+- pip install pymongo --user
+- pip install pandas --user
 
 # React
 A react dologba meg fogalmam sincs mert ott sok minden volt
