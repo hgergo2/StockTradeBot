@@ -2,7 +2,10 @@ from pymongo import MongoClient
 import pandas as pd
 import Position_live
 import time
+import configparser
 
+config = configparser.ConfigParser()
+config.read('mongo_config.ini')
 
 def __get_positions_db():
     if 'Positions' in cluster.list_database_names():
@@ -21,7 +24,7 @@ def __get_positions_db():
         return mydb
 
 
-cluster = MongoClient('mongodb://localhost:27023/')
+cluster = MongoClient(str(config['MONGO']['mongo_url']))
 charts_db = cluster['Charts']
 statistics_db = cluster['Statistics']
 positions_db = __get_positions_db()
