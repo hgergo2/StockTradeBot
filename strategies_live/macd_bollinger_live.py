@@ -6,6 +6,7 @@ import pandas_ta as ta
 import mongoHandler as mongo
 import configparser
 import OrderHandlerLive
+import prefixes
 
 class strategy:
     def __init__(self, symbol: str, rtr_ratio=2.0, atr_multiplier=2.0):
@@ -87,7 +88,7 @@ config.read('macd_bollinger_config.ini')
 
 symbols = config['SETTINGS']['symbols'].split(',')
 timeframe = config['SETTINGS']['timeframe']
-show_runtime = bool(config['SETTINGS']['show_runtime'])
+show_runtime = str(config['SETTINGS']['show_runtime'])
 sleep_time = float(config['SETTINGS']['sleep_time'])
 
 if show_runtime == 'True' or show_runtime == 'true':
@@ -106,6 +107,7 @@ print(f'\nRunning strategy (macd_bollinger) on symbols: {symbols}\n')
 while True:
     time.sleep(sleep_time)
     start = time.time()
+
     for strategy in strategy_holder:
         result = strategy.run_strategy()
         mongo.add_chart_to_db(strategy.symbol, result[1], strategy.strategy_name, result[2])
